@@ -36,6 +36,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME_SOLVE) $(NAME_MAKE_EX)
+	rm -rf tests
 
 re: fclean all
 
