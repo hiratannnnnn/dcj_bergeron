@@ -58,7 +58,7 @@ void	print_Extremity_ctx(Extremity_ctx *ctx)
 
 void	put_desires(Extremity **exts, Extremity *ext_l, Extremity *ext_r, int n)
 {
-	int i, j;
+	int i;
 	Extremity *cur, *tar;
 	int cur_id, cur_sign;
 	int tar_id, tar_sign;
