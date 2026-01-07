@@ -20,106 +20,98 @@ void	put_nums(int *perm, char *line, int n)
 	}
 }
 
-// void	cut_line(Extremity_ctx *ctx, Extremity **exts, char const *line, int n)
-// {
-// 	int i, tmp;
-// 	char *cur, *endptr;
-// 	Extremity *ext;
+static void connect_genes(Extremity *a, Extremity *b)
+{
+    if (a && a->reality) {
+        if (a->reality->reality == a) a->reality->reality = NULL;
+    }
+    if (b && b->reality) {
+        if (b->reality->reality == b) b->reality->reality = NULL;
+    }
+    if (a) a->reality = b;
+    if (b) b->reality = a;
+}
 
-// 	i = 0;
-// 	tmp = INT_MIN;
-// 	cur = (char *)line;
-// 	while (i < n)
-// 	{
-// 		while (*cur == ' ' || *cur == '\n')
-// 			cur++;
-// 		if (!*cur)
-// 			break;
-// 		if (*cur == '^')
-// 		{
-// 			ext = get_ext_by_value(ctx, exts, tmp);
-// 			cut_exts(ctx, ext, ext->reality);
-// 			cur++;
-// 		}
-// 		else
-// 		{
-// 			tmp = (int)strtol(cur, &endptr, 10);
-// 			cur = endptr;
-// 			i++;
-// 		}
-// 	}
-// }
+static void connect_to_cap(Extremity *gene, Extremity *cap)
+{
+    if (gene && gene->reality) {
+         if (gene->reality->reality == gene) gene->reality->reality = NULL;
+    }
+    if (gene) gene->reality = cap;
+    if (cap) cap->reality = gene; 
+}
 
 void    cut_line(Extremity_ctx *ctx, Extremity **exts, char const *line, int n, int *n_adj)
 {
-    int i;
     char *cur, *endptr;
     int val;
-    Extremity *first, *last;
+    Extremity *first = NULL; 
+    Extremity *last = NULL;
 
-    i = 0;
     cur = (char *)line;
-    first = NULL;
-    while (i < n || *cur)
+
+    while (*cur)
     {
         while (*cur == ' ' || *cur == '\n' || *cur == '\t')
             cur++;
-        if (!*cur)
-            break;
+        if (!*cur) break;
 
-        if (*cur == '<')
+        if (*cur == '<') // 線形染色体 開始
         {
             cur++;
-            while (*cur == ' ' || *cur == '\t')
-                cur++;
+            while (*cur == ' ' || *cur == '\t') cur++;
             val = (int)strtol(cur, &endptr, 10);
-            first = get_ext_by_value(ctx, exts, (-1) * val);
-            first->reality = ctx->ext_l;
-            ctx->ext_l->reality = first;
-			(*n_adj)++;
             cur = endptr;
-            i++;
+
+            first = get_ext_by_value(ctx, exts, (-1) * val);
+            
+            // 左端を ext_l に接続
+            connect_to_cap(first, ctx->ext_l);
+            
+            last = get_ext_by_value(ctx, exts, val);
+            (*n_adj)++;
         }
-        else if (*cur == '(')
+        else if (*cur == '(') // 円形染色体 開始
         {
             cur++;
-            while (*cur == ' ' || *cur == '\t')
-                cur++;
+            while (*cur == ' ' || *cur == '\t') cur++;
             val = (int)strtol(cur, &endptr, 10);
-            first = get_ext_by_value(ctx, exts, (-1) * val);
             cur = endptr;
-            i++;
-        }
-        else if (*cur == '>')
-        {
-            val = ctx->perm[i - 1];
+
+            first = get_ext_by_value(ctx, exts, (-1) * val);
             last = get_ext_by_value(ctx, exts, val);
-            last->reality = ctx->ext_r;
-            ctx->ext_r->reality = last;
-            cur++;
         }
-        else if (*cur == ')')
+        else if (*cur == '>') // 線形染色体 終了
         {
-            val = ctx->perm[i - 1];
-            last = get_ext_by_value(ctx, exts, val);
-            last->reality = first;
-            first->reality = last;
-            cur++;
+            // 右端を ext_r に接続
+            connect_to_cap(last, ctx->ext_r);
+            
+            first = NULL; last = NULL; cur++;
         }
-        else
+        else if (*cur == ')') // 円形染色体 終了
         {
-            strtol(cur, &endptr, 10);
-            if (cur != endptr)
-            {
-                cur = endptr;
-                i++;
+            // 最初と最後を繋ぐ
+            connect_genes(last, first);
+            first = NULL; last = NULL; cur++;
+        }
+        else // 遺伝子
+        {
+            val = (int)strtol(cur, &endptr, 10);
+            if (cur == endptr) { cur++; continue; }
+            cur = endptr;
+
+            Extremity *current_left = get_ext_by_value(ctx, exts, (-1) * val);
+            
+            if (last) {
+                // 通常の遺伝子間接続
+                connect_genes(last, current_left);
             }
-            else
-                cur++;
+
+            last = get_ext_by_value(ctx, exts, val);
         }
     }
 }
-
+// ...existing code...
 int count_sentinels(char const *line)
 {
 	char *str;
@@ -135,44 +127,6 @@ int count_sentinels(char const *line)
 	}
 	return (count);
 }
-
-// void	put_nums_sentinels(int *perm, int *perm_sent, int *sigma_sent, char const *line, int n)
-// {
-// 	int i, j;
-// 	char *cur, *endptr;
-
-// 	i = 0;
-// 	j = 0;
-// 	cur = (char *)line;
-// 	perm_sent[j] = 0;
-// 	sigma_sent[j] = 1;
-// 	j++;
-// 	while (i < n)
-// 	{
-// 		while (*cur == ' ' || *cur == '\n')
-// 			cur++;
-// 		if (!*cur)
-// 			break;
-// 		if (*cur == '^')
-// 		{
-// 			perm_sent[j] = n + 1;
-// 			sigma_sent[j] = 1;
-// 			j++;
-// 			perm_sent[j] = 0;
-// 			sigma_sent[j] = 1;
-// 			j++;
-// 			cur = cur + 1;
-// 		}
-// 		strtol(cur, &endptr, 10);
-// 		perm_sent[j] = abs(perm[i]);
-// 		sigma_sent[j] = abs(perm[i]) / perm[i];
-// 		i++;
-// 		j++;
-// 		cur = endptr;
-// 	}
-// 	perm_sent[j] = n + 1;
-// 	sigma_sent[j] = 1;
-// }
 
 void    put_nums_sentinels(int *perm, int *perm_sent, int *sigma_sent, char const *line, int n)
 {

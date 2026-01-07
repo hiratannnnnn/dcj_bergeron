@@ -30,8 +30,6 @@ int write_perm_ext(int *perm, int n, double cut_prob, char const *filename)
         for (i = start; i < n; i++)
         {
             fprintf(fp, "%d ", perm[i]);
-            // 次の遺伝子との間で「切断（染色体の終わり）」を行うか判定
-            // ただし最後の遺伝子の場合は必ず終了させる
             if (i == n - 1 || (double)rand() / RAND_MAX < cut_prob)
             {
                 fprintf(fp, "%c", is_circular ? ')' : '>');
@@ -79,7 +77,6 @@ int make_example(int n, char const *filename, double cut_prob)
 
     perm = gen_signed_perm(n);
     write_perm_ext(perm, n, cut_prob, filename);
-    // print_array_int(perm, n, 4);
 	free_array_int(perm, n);
     return (1);
 }

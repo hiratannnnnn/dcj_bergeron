@@ -14,14 +14,14 @@ int main(void)
 	// mkdir("tests", 0755);
 
 	// for generating some permutation.
-	make_example(20, "tests/ex_20.txt", 0.1);
-	printf("made tests/ex_20.txt.\n");
-	make_example(100, "tests/ex_100.txt", 0.1);
-	printf("made tests/ex_100.txt.\n");
-	make_example(1000, "tests/ex_1000.txt", 0.1);
-	printf("made tests/ex_1000.txt.\n");
-	make_example(10000, "tests/ex_10000.txt", 0.1);
-	printf("made tests/ex_10000.txt.\n");
+	make_example(20, "ex_20.txt", 0.1);
+	printf("made ex_20.txt.\n");
+	make_example(100, "ex_100.txt", 0.1);
+	printf("made ex_100.txt.\n");
+	make_example(1000, "ex_1000.txt", 0.1);
+	printf("made ex_1000.txt.\n");
+	make_example(10000, "ex_10000.txt", 0.1);
+	printf("made ex_10000.txt.\n");
 
 	print_info();
 	return (0);

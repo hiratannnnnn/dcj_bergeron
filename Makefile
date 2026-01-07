@@ -1,7 +1,7 @@
-NAME_SOLVE   := solve.exe
-NAME_MAKE_EX := make_ex.exe
+NAME_SOLVE   := solve
+NAME_MAKE_EX := make_ex
 
-CC           := gcc
+CC           := cc
 CFLAGS       := -I./include
 
 SRCS_DIR     := srcs
@@ -36,7 +36,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME_SOLVE) $(NAME_MAKE_EX)
-	rm -rf tests
+	rm -f ex_*
 
 re: fclean all
 
