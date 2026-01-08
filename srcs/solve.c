@@ -309,6 +309,6 @@ int solve_dcj_mine(Extremity_ctx *ctx, int log_output)
     free_list_adj(adj_A, ctx->n_adj_a);
     free_list_adj(adj_B, ctx->n_adj_b);
 
-    if (log_output) fclose(ctx->fp);
+    fclose(ctx->fp);
     return (1);
 }
