@@ -14,7 +14,7 @@ int main(void)
 	// mkdir("tests", 0755);
 
 	// for generating some permutation.
-	make_example(20, "ex_20.txt", 0.1);
+	make_example(10, "ex_10.txt", 0.1);
 	printf("made ex_20.txt.\n");
 	make_example(100, "ex_100.txt", 0.1);
 	printf("made ex_100.txt.\n");
