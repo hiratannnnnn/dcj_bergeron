@@ -26,7 +26,7 @@ int main(int argc, char **argv)
         Extremity_free(&ctx, n);
         return (1);
     }
-    proc_start = clock();
+    // proc_start = clock();
 
     // print_Extremity_ctx(&ctx);
     solve_dcj_mine(&ctx, 0);

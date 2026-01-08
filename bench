@@ -1,15 +1,30 @@
-mem_peak: 2840
+mem_peak: 2904
 remaining mem: 0
-proccess time: 0.001108
-mem_peak: 27280
+proccess time: 0.000681
+mem_peak: 27248
 remaining mem: 0
-proccess time: 0.000789
-mem_peak: 268496
+proccess time: 0.000911
+mem_peak: 267760
 remaining mem: 0
-proccess time: 0.007451
-mem_peak: 2680176
+proccess time: 0.002232
+mem_peak: 2675952
 remaining mem: 0
-proccess time: 0.180182
-mem_peak: 26802432
+proccess time: 0.004517
+mem_peak: 26795744
 remaining mem: 0
-proccess time: 20.982213
+proccess time: 0.051467
+mem_peak: 2904
+remaining mem: 0
+proccess time: 0.000786
+mem_peak: 27248
+remaining mem: 0
+proccess time: 0.001302
+mem_peak: 267760
+remaining mem: 0
+proccess time: 0.007157
+mem_peak: 2675952
+remaining mem: 0
+proccess time: 0.179437
+mem_peak: 26795744
+remaining mem: 0
+proccess time: 20.827368
