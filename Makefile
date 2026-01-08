@@ -1,7 +1,7 @@
 NAME_SOLVE   := solve
 NAME_MAKE_EX := make_ex
 
-CC           := cc
+CC           := gcc
 CFLAGS       := -I./include
 
 SRCS_DIR     := srcs

@@ -22,6 +22,10 @@ int main(void)
 	printf("made ex_1000.txt.\n");
 	make_example(10000, "ex_10000.txt", 0.1);
 	printf("made ex_10000.txt.\n");
+	make_example(100000, "ex_100000.txt", 0.1);
+	printf("made ex_100000.txt.\n");
+	make_example(1000000, "ex_1000000.txt", 0.1);
+	printf("made ex_1000000.txt.\n");
 
 	print_info();
 	return (0);
