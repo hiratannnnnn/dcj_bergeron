@@ -1,30 +1,43 @@
-mem_peak: 2904
-remaining mem: 0
-proccess time: 0.000681
-mem_peak: 27248
-remaining mem: 0
-proccess time: 0.000911
-mem_peak: 267760
-remaining mem: 0
-proccess time: 0.002232
-mem_peak: 2675952
-remaining mem: 0
-proccess time: 0.004517
-mem_peak: 26795744
-remaining mem: 0
-proccess time: 0.051467
+読み込みまで計測に含めた
+ex_10.txt
 mem_peak: 2904
 remaining mem: 0
 proccess time: 0.000786
+ex_100.txt
 mem_peak: 27248
 remaining mem: 0
 proccess time: 0.001302
+ex_1000.txt
 mem_peak: 267760
 remaining mem: 0
 proccess time: 0.007157
+ex_10000.txt
 mem_peak: 2675952
 remaining mem: 0
 proccess time: 0.179437
+ex_100000.txt
 mem_peak: 26795744
 remaining mem: 0
 proccess time: 20.827368
+
+読み込みを省いた
+ex_10.txt
+mem_peak: 2904
+remaining mem: 0
+proccess time: 0.000681
+ex_100.txt
+mem_peak: 27248
+remaining mem: 0
+proccess time: 0.000911
+ex_1000.txt
+mem_peak: 267760
+remaining mem: 0
+proccess time: 0.002232
+ex_10000.txt
+mem_peak: 2675952
+remaining mem: 0
+proccess time: 0.004517
+ex_100000.txt
+mem_peak: 26795744
+remaining mem: 0
+proccess time: 0.051467
